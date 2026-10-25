@@ -1,0 +1,85 @@
+{
+  "id": "E102",
+  "value": 13500.0,
+  "method": "Independent Python Decimal, precision 80 decimal digits; direct analytic SI equation with binary64 inputs decoded exactly, no JavaScript model imports.",
+  "value_80_digits": "13500.00000000000005551115123125782702118158340454101562500000",
+  "cases": [
+    {
+      "name": "Pressure-matched exhaust",
+      "values": {
+        "exit": 100000,
+        "ambient": 100000
+      },
+      "expected": 12500.0
+    },
+    {
+      "name": "Vacuum ambient pressure",
+      "values": {
+        "ambient": 0
+      },
+      "expected": 18500.0
+    },
+    {
+      "name": "Pressure contribution opposes momentum",
+      "values": {
+        "flow": 1,
+        "exhaust": 100,
+        "exit": 0,
+        "ambient": 200000,
+        "area": 0.01
+      },
+      "expected": -1900.0
+    },
+    {
+      "name": "Near-cancelling momentum pressure retains residual",
+      "values": {
+        "flow": 1,
+        "exhaust": 100,
+        "exit": 0,
+        "ambient": 10000,
+        "area": 0.01
+      },
+      "expected": -2.0816681711721685e-15
+    },
+    {
+      "name": "Exact momentum pressure cancellation",
+      "values": {
+        "flow": 1,
+        "exhaust": 100,
+        "exit": 0,
+        "ambient": 800,
+        "area": 0.125
+      },
+      "expected": 0.0
+    },
+    {
+      "name": "Large-factor cancellation retains two-product residual",
+      "values": {
+        "flow": 1.0715086151696286e+301,
+        "exhaust": 1.0000000074505806,
+        "exit": 0,
+        "ambient": 1.0715086231529898e+301,
+        "area": 1
+      },
+      "expected": 5.948067633911132e+284
+    },
+    {
+      "name": "Pressure subtraction residual survives thrust cancellation",
+      "values": {
+        "flow": 1e+50,
+        "exhaust": 1,
+        "exit": 1e+30,
+        "ambient": 1e+50,
+        "area": 1
+      },
+      "expected": 1e+30
+    },
+    {
+      "name": "Light-speed exhaust rejected",
+      "values": {
+        "exhaust": 299792458
+      },
+      "throws": true
+    }
+  ]
+}
